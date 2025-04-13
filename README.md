@@ -22,7 +22,7 @@ python -m venv env
 2. Instalar los paquetes necesarios:
 
 ```cmd
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 <br>
