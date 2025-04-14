@@ -1,12 +1,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
 </head>
 <body>
     
-    <h1></h1>
+    <h1>KanjiDB</h1>
+    
+    <div id="botones">
+        <div class="boton">
+                <li>
+                    <a href="all"></a>
+                        <img src="{{ url_for('static', filename= 'svg/all.svg') }}" height="150px">
+                        <ul><h1>ALL</h1></ul>
+                    </a>
+                </li>
+        </div>
+        <div class="boton">
+            <a href="all">
+                <li>
+                    <img src="{{ url_for('static', filename= 'svg/all.svg') }}" height="150px">
+                    <ul><h1>ALL</h1></ul>
+                </li>
+            </a>
+        </div>
+        <div class="boton">
+            <a href="all">
+                <li>
+                    <img src="{{ url_for('static', filename= 'svg/all.svg') }}" height="150px">
+                    <ul><h1>ALL</h1></ul>
+                </li>
+            </a>
+        </div>
+        <div class="boton">
+            <a href="all">
+                <li>
+                    <img src="{{ url_for('static', filename= 'svg/all.svg') }}" height="150px">
+                    <ul><h1>ALL</h1></ul>
+                </li>
+            </a>
+        </div>
+    </div>
+
+    
+
+    <!--
+    ROADMAP
+
+    Inicio (/): utilizar HTML *
+    Mostrar todo (GET)
+    Mostrar con argumentos (GET)
+    Pagina para eliminar (DELETE)
+    Pagina para insertarn (POST)
+    
+    -->
 
 </body>
 </html>
