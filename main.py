@@ -39,3 +39,17 @@ def buscador():
         "frases": frases
     }
     return respuesta
+
+@application.route("/nivel", methods=["GET"])
+def nivel():
+    nivel = request.args.get("nivel")
+
+    if nivel is None or nivel == "":
+        return "No se ha pasado un nivel"
+    if len(nivel) != 2:
+        return "El nivel deben ser 2 carácteres"
+    
+    conexion = SQLiteConnection("db/kanji.db")
+    respuesta = conexion.execute_query("SELECT kanji, tipo, onyomi, kunyomi, significado FROM kanjis k INNER JOIN niveles_jlpt j ON j.kanji_id = k.id WHERE nivel_jlpt = ?;", (nivel,))
+    print(respuesta)
+    return respuesta
