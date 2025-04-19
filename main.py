@@ -86,8 +86,8 @@ def add():
     nivel_jlpt = request.form.get("nivel_jlpt")
 
     conexion = SQLiteConnection("db/kanji.db")
-    conexion.execute_query("INSERT OR IGNORE INTO kanjis (kanji, tipo, onyomi, kunyomi, significado) VALUES (?, ?, ?, ?, ?);", (kanji, tipo, onyomi, kunyomi, significado))
+    conexion.execute_query("INSERT OR IGNORE INTO kanjis (kanji, tipo, onyomi, kunyomi, significado) VALUES (?, ?, ?, ?, ?);", (kanji, tipo, onyomi, kunyomi, significado), commit=True)
     kanji_id = conexion.execute_query("SELECT id FROM kanjis WHERE kanji = ?;", (kanji,))[0][0]
-    conexion.execute_query("INSERT OR IGNORE INTO frases (frase, traduccion, kanji_id) VALUES (?, ?, ?);", (frase, traduccion, kanji_id))
-    conexion.execute_query("INSERT OR IGNORE INTO niveles_jlpt (nivel_jlpt, kanji_id) VALUES (?, ?);", (nivel_jlpt, kanji_id))
+    conexion.execute_query("INSERT OR IGNORE INTO frases (frase, traduccion, kanji_id) VALUES (?, ?, ?);", (frase, traduccion, kanji_id), commit=True)
+    conexion.execute_query("INSERT OR IGNORE INTO niveles_jlpt (nivel_jlpt, kanji_id) VALUES (?, ?);", (nivel_jlpt, kanji_id), commit=True)
     return "Kanji añadido correctamente"
