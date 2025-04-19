@@ -26,9 +26,9 @@ def all():
 def buscador():
     kanji = request.args.get("kanji")
 
-    if kanji is None or kanji == "":
+    if (kanji is None or kanji == ""):
         return "No se ha pasado un kanji"
-    if len(kanji) > 1:
+    if (len(kanji) > 1):
         return "El kanji debe ser un solo carácter"
     
     conexion = SQLiteConnection("db/kanji.db")
@@ -45,9 +45,9 @@ def buscador():
 def nivel():
     nivel = request.args.get("nivel")
 
-    if nivel is None or nivel == "":
+    if (nivel is None or nivel == ""):
         return "No se ha pasado un nivel"
-    if len(nivel) != 2:
+    if (len(nivel) != 2):
         return "El nivel deben ser 2 carácteres"
     
     conexion = SQLiteConnection("db/kanji.db")
@@ -59,15 +59,18 @@ def nivel():
 def eliminar():
     kanji = request.args.get("kanji")
 
-    if kanji is None or kanji == "":
+    if (kanji is None or kanji == ""):
         return "No se ha pasado un kanji"
-    if len(kanji) > 1:
+    if (len(kanji) > 1):
         return "El kanji debe ser un solo carácter"
 
     conexion = SQLiteConnection("db/kanji.db")
-    conexion.execute_query("DELETE FROM frases WHERE kanji_id = (SELECT id FROM kanjis WHERE kanji = ?);", (kanji,))
-    conexion.execute_query("DELETE FROM niveles_jlpt WHERE kanji_id = (SELECT id FROM kanjis WHERE kanji = ?);", (kanji,))
-    conexion.execute_query("DELETE FROM kanjis WHERE kanji = ?;", (kanji,))
+    kanji_existe = conexion.execute_query("SELECT id FROM kanjis WHERE kanji = ?;", (kanji))
+    if not kanji_existe:
+        return "El kanji no existe en la base de datos"
+    conexion.execute_query("DELETE FROM frases WHERE kanji_id = (SELECT id FROM kanjis WHERE kanji = ?);", (kanji), commit=True)
+    conexion.execute_query("DELETE FROM niveles_jlpt WHERE kanji_id = (SELECT id FROM kanjis WHERE kanji = ?);", (kanji), commit=True)
+    conexion.execute_query("DELETE FROM kanjis WHERE kanji = ?;", (kanji), commit=True)
     return "Kanji eliminado correctamente"
 
 # Añadir un kanji junto a su información asociada
