@@ -1,2 +1,4 @@
 https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3 (añadir css al html)
 
+https://www.sliderrevolution.com/resources/css-button-hover-effects/ (CSS3 Button Hover Effects with FontAwesome caso 4)
+

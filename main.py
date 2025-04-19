@@ -19,7 +19,7 @@ def index():
 def all():
     conexion = SQLiteConnection("db/kanji.db")
     respuesta = conexion.execute_query("SELECT kanji, tipo, onyomi, kunyomi, significado, frase, traduccion, nivel_jlpt FROM kanjis k INNER JOIN frases f ON f.kanji_id = k.id INNER JOIN niveles_jlpt j ON j.kanji_id = k.id;")
-    return render_template("index.html")
+    return respuesta
 
 # Obtener todo de un kanji
 @application.route("/kanji", methods=["GET"])
