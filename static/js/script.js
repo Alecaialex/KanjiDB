@@ -11,7 +11,7 @@ if (!kanji) {
     return;
 }
 
-fetch(`/kanji?kanji=${encodeURIComponent(kanji)}`, {
+fetch(`/eliminar?kanji=${encodeURIComponent(kanji)}`, {
     method: "DELETE",
 })
     .then(response => {

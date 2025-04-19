@@ -32,80 +32,79 @@
                     <li class="listado">
                         <a href="#0">DIFICULTAD </a>
                         <ul>
-                            <a href="/kanji/level?level=N5"><li>N5</li></a>
-                            <a href="/kanji/level?level=N4"><li>N4</li></a>
-                            <a href="/kanji/level?level=N3"><li>N3</li></a>
-                            <a href="/kanji/level?level=N2"><li>N2</li></a>
-                            <a href="/kanji/level?level=N1"><li>N1</li></a>
+                            <a href="/nivel?nivel=N5"><li>N5</li></a>
+                            <a href="/nivel?nivel=N4"><li>N4</li></a>
+                            <a href="/nivel?nivel=N3"><li>N3</li></a>
+                            <a href="/nivel?nivel=N2"><li>N2</li></a>
+                            <a href="/nivel?nivel=N1"><li>N1</li></a>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
     
-    <div class="botones">
-      <div class="boton">
-        <div class="formulario">
-          <form>
-            <h2>Insertar nuevo kanji</h2>
-            
-            <div>
-              <label for="kanji">Kanji</label>
-              <input type="text" id="kanji" name="kanji" required>
+        <div class="botones">
+          <div class="boton">
+            <div class="formulario">
+              <form action="/add" method="POST">
+                <h2>Insertar nuevo kanji</h2>
+        
+                <div>
+                  <label for="kanji">Kanji</label>
+                  <input type="text" id="kanji" name="kanji" required>
+                </div>
+                <div>
+                  <label for="tipo">Tipo</label>
+                  <select id="tipo" name="tipo" required>
+                    <option value="">Selecciona uno</option>
+                    <option>Verbo transitivo</option>
+                    <option>Verbo intransitivo</option>
+                    <option>Adjetivo i</option>
+                    <option>Adjetivo na</option>
+                    <option>Sustantivo</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="onyomi">Lectura onyomi</label>
+                  <input type="text" id="onyomi" name="onyomi" required>
+                </div>
+                <div>
+                  <label for="kunyomi">Lectura kunyomi</label>
+                  <input type="text" id="kunyomi" name="kunyomi" required>
+                </div>
+                <div>
+                  <label for="significado">Significados (separados por coma)</label>
+                  <input type="text" id="significado" name="significado" required>
+                </div>
+                <div>
+                  <label for="nivel_jlpt">Nivel</label>
+                  <select id="nivel_jlpt" name="nivel_jlpt" required>
+                    <option value="">Selecciona nivel</option>
+                    <option>N5</option>
+                    <option>N4</option>
+                    <option>N3</option>
+                    <option>N2</option>
+                    <option>N1</option>
+                  </select>
+                </div>
+        
+                <div>
+                  <label for="frase">Frase de ejemplo</label>
+                  <textarea id="frase" name="frase" rows="3" required></textarea>
+                </div>
+        
+                <div>
+                  <label for="traduccion">Significado de la frase (opcional)</label>
+                  <input type="text" id="traduccion" name="traduccion">
+                </div>
+                <button type="submit">Guardar kanji</button>
+              </form>
             </div>
-            <div>
-              <label for="tipo">Tipo</label>
-              <select id="tipo" name="tipo" required>
-                <option value="">Selecciona uno</option>
-                <option>Verbo transitivo</option>
-                <option>Verbo intransitivo</option>
-                <option>Adjetivo i</option>
-                <option>Adjetivo na</option>
-                <option>Sustantivo</option>
-              </select>
-            </div>
-            <div>
-              <label for="onyomi">Lectura onyomi</label>
-              <input type="text" id="onyomi" name="onyomi" required>
-            </div>
-            <div>
-              <label for="kunyomi">Lectura kunyomi</label>
-              <input type="text" id="kunyomi" name="kunyomi" required>
-            </div>
-            <div>
-              <label for="significados">Significados (separados por coma)</label>
-              <input type="text" id="significados" name="significados" required>
-            </div>
-            <div>
-            <label for="nivel">Nivel</label>
-              <select id="nivel" name="nivel" required>
-                <option value="">Selecciona nivel</option>
-                <option>N5</option>
-                <option>N4</option>
-                <option>N3</option>
-                <option>N2</option>
-                <option>N1</option>
-              </select>
-            </div>
-            
-            <div>
-              <label for="frase">Frase de ejemplo</label>
-              <textarea id="frase" name="frase" rows="3" required></textarea>
-            </div>
-
-            <div>
-              <label for="significado-frase">Significado de la frase (opcional)</label>
-              <input type="text" id="significado-frase" name="significado-frase">
-            </div>
-            <button type="submit">Guardar kanji</button>
-          </form>
+          </div>
         </div>
-      </div>
-
-    </div>
     
     <div class="botones">
-      <form id="delete-kanji-form" class="search-box" action="/kanji" method="POST">
+      <form id="delete-kanji-form" class="search-box" action="/eliminar" method="POST">
         <button type="submit" class="btn-search"><i class="fa-solid fa-x"></i></button>
         <input type="text" name="kanji" class="input-search" placeholder="Eliminar Kanji...">
       </form>
