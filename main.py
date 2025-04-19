@@ -1,5 +1,5 @@
 # IMPORTAR LIBRERÍAS
-from flask import Flask, request
+from flask import Flask, request,render_template
 from flask_cors import CORS
 from JGVutils import SQLiteConnection
 
@@ -12,7 +12,7 @@ application.config["CORS_HEADERS"] = "Content-Type"
 # Página principal
 @application.route("/", methods=["GET"])
 def index():
-    return ""
+    return render_template('index.html')
 
 # Obtener todo
 @application.route("/all", methods=["GET"])
