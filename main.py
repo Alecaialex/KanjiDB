@@ -74,7 +74,7 @@ def eliminar():
     return "Kanji eliminado correctamente"
 
 # Añadir un kanji junto a su información asociada
-@application.route("/add", methods=["POST"])
+@application.route("/add", methods=["POST", "GET"])
 def add():
     kanji = request.form.get("kanji")
     tipo = request.form.get("tipo")
@@ -85,9 +85,10 @@ def add():
     traduccion = request.form.get("traduccion")
     nivel_jlpt = request.form.get("nivel_jlpt")
 
+    print(kanji, tipo, onyomi, kunyomi, significado, frase, traduccion, nivel_jlpt)
+
     conexion = SQLiteConnection("db/kanji.db")
     conexion.execute_query("INSERT OR IGNORE INTO kanjis (kanji, tipo, onyomi, kunyomi, significado) VALUES (?, ?, ?, ?, ?);", (kanji, tipo, onyomi, kunyomi, significado), commit=True)
-    kanji_id = conexion.execute_query("SELECT id FROM kanjis WHERE kanji = ?;", (kanji,))[0][0]
-    conexion.execute_query("INSERT OR IGNORE INTO frases (frase, traduccion, kanji_id) VALUES (?, ?, ?);", (frase, traduccion, kanji_id), commit=True)
-    conexion.execute_query("INSERT OR IGNORE INTO niveles_jlpt (nivel_jlpt, kanji_id) VALUES (?, ?);", (nivel_jlpt, kanji_id), commit=True)
+    conexion.execute_query("INSERT OR IGNORE INTO frases (frase, traduccion, kanji_id) VALUES (?, ?, (SELECT id FROM kanjis WHERE kanji = ?));", (frase, traduccion, kanji), commit=True)
+    conexion.execute_query("INSERT OR IGNORE INTO niveles_jlpt (nivel_jlpt, kanji_id) VALUES (?, (SELECT id FROM kanjis WHERE kanji = ?));", (nivel_jlpt, kanji), commit=True)
     return "Kanji añadido correctamente"
