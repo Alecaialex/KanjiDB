@@ -6,6 +6,11 @@ e.preventDefault();
 const input = this.querySelector('input[name="kanji"]');
 const kanji = input.value.trim();
 
+if (kanji.length > 1){
+    alert("El kanji debe ser un solo carácter.");
+    return;
+}
+
 if (!kanji) {
     alert("Por favor, escribe un kanji para eliminar.");
     return;
@@ -35,6 +40,12 @@ document.getElementById("add-kanji-form").addEventListener("submit", function (e
 
     const input = this.querySelector('input[name="kanji"]');
     const kanji = input.value.trim();
+
+
+    if (kanji.length > 1) {
+                alert("El kanji debe ser un solo carácter.");
+                return;
+        }
 
     if (!kanji) {
         alert("Por favor, escribe un kanji para añadir.");

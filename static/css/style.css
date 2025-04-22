@@ -16,6 +16,11 @@ body{
     background-color: var(--fondo);
 }
 
+h1{
+   color: var(--texto-blanco);
+   box-shadow: #fff 1px 1px 2px;
+   text-align: center;
+}
 
 .botones {
     display: flex;
