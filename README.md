@@ -66,10 +66,8 @@ flask --app main.py --debug run
 > Permite añadir un kanji con su tipo, lectura onyomi, lectura kunyomi, significado, frases, traduccion y nivel.
 
 
-> [!TIP]
+:warning: Para reestablecer la base de datos utilizar el siguiente comando:
 
-> Para reestablecer la base de datos utilizar el siguiente comando:
-
-> ```cmd
-> sqlite3.exe kanji.db < kanji.sql
-> ```
+```cmd
+sqlite3.exe kanji.db < kanji.sql
+```
